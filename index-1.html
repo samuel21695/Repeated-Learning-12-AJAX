@@ -1,0 +1,28 @@
+<script>
+  const getPokemonAJAX = () => {
+    // XMLHttpRequest 객체 생성
+    const xhr = new XMLHttpRequest();
+
+    // 비동기 요청 설정
+    xhr.open("GET", "https://pokeapi.co/api/v2/pokemon/", true);
+
+    // 요청이 완료되었을 때 실행할 콜백 함수 정의
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        console.dir(xhr);
+        // 응답을 콘솔에 출력
+        console.log(xhr.responseText);
+        const pokemon = JSON.parse(xhr.responseText);
+        console.log(pokemon.results);
+      } else {
+        // 오류 처리
+        console.error("데이터 못받아옴" + xhr.statusText);
+      }
+    };
+
+    // 요청 전송
+    xhr.send();
+  }
+
+  getPokemonAJAX();
+</script>
